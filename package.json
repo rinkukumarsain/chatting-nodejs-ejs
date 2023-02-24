@@ -1,0 +1,35 @@
+{
+  "name": "fab_india_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "joi-objectid": "^4.0.2",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mongoose": "^6.7.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.0",
+    "twilio": "^4.7.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0"
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ChatRoom</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+        let name = prompt("Please enter your name");
+        let roomCode = prompt("Please enter room code");
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #intro {
+            background-color: #008000;
+            color: #ffffff;
+            height: 5%;
+        }
+
+        body {
+            font: 20px;
+        }
+
+        form {
+            background: #000000;
+            padding: 3px;
+            position: fixed;
+            bottom: 5px;
+            width: 100%;
+        }
+
+        form input {
+            background-color: #e6ffe6;
+            border: 0;
+            padding: 10px;
+            width: 90%;
+            margin-right: 0.5%;
+        }
+
+        form button {
+            width: 9%;
+            background: #00e600;
+            border: none;
+            padding: 5px;
+            font-size: 20px;
+        }
+
+        #messages {
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #b3ffb3;
+        }
+
+        #list {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="intro">
+        <h1>ChatRoom</h1>
+    </div>
+
+    <ul id="messages"></ul>
+
+    <form action="">
+        <input id="m" placeholder="Enter your message..." autocomplete="off" required />
+        <button text="join room" class="btn btn-primary btn-block">send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        var socket = io();
+
+        socket.emit("joining msg", name, roomCode);
+
+        $("form").submit(function (e) {
+            e.preventDefault(); // will prevent page reloading
+            socket.emit("chat message", name + ":  " + $("#m").val(),roomCode);
+
+            $("#messages").append(
+                $('<li id="list">').text("You:  " + $("#m").val())
+            );
+            $("#m").val("");
+            return false;
+        });
+        socket.on("chat message",(msg)=> {
+            $("#messages").append($("<li>").text(msg));
+        });
+    </script>
+</body>
+
+</html>
